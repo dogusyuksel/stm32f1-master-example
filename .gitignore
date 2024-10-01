@@ -1,3 +1,13 @@
+# custom ignores
+thirdparty/*
+bootloader_firmware/build/*
+application_firmware/build/*
+.vscode/**
+flash.sh
+*.exe
+application_firmware/generated_files
+application_tool/build
+
 # Prerequisites
 *.d
 

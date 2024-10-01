@@ -1,0 +1,116 @@
+Configuration	application_firmware
+STM32CubeMX 	6.11.0
+Date	10/01/2024
+MCU	STM32F103C8Tx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+ADC1	IN5	ADC1_IN5	PA5
+CAN	Activated	CAN_RX	PA11
+CAN	Activated	CAN_TX	PA12
+I2C1	I2C	I2C1_SCL	PB8
+I2C1	I2C	I2C1_SDA	PB9
+RCC	Crystal/Ceramic Resonator	RCC_OSC_IN	PD0-OSC_IN
+RCC	Crystal/Ceramic Resonator	RCC_OSC_OUT	PD1-OSC_OUT
+RCC	Crystal/Ceramic Resonator	RCC_OSC32_IN	PC14-OSC32_IN
+RCC	Crystal/Ceramic Resonator	RCC_OSC32_OUT	PC15-OSC32_OUT
+RTC	Activate Clock Source	RTC_VS_RTC_Activate	VP_RTC_VS_RTC_Activate
+RTC	Activate Calendar	RTC_VS_RTC_Calendar	VP_RTC_VS_RTC_Calendar
+RTC	RTC Output on the Tamper pin	RTC_OUT	PC13-TAMPER-RTC
+SYS	Serial Wire	SYS_JTCK-SWCLK	PA14
+SYS	Serial Wire	SYS_JTMS-SWDIO	PA13
+SYS	TIM1	SYS_VS_tim1	VP_SYS_VS_tim1
+USART3	Asynchronous	USART3_RX	PB11
+USART3	Asynchronous	USART3_TX	PB10
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+2	PC13-TAMPER-RTC	RTC_OUT	
+3	PC14-OSC32_IN	RCC_OSC32_IN	
+4	PC15-OSC32_OUT	RCC_OSC32_OUT	
+5	PD0-OSC_IN	RCC_OSC_IN	
+6	PD1-OSC_OUT	RCC_OSC_OUT	
+15	PA5	ADC1_IN5	ANALOG_EXTERNAL
+16	PA6	GPIO_Output	
+19	PB1	GPIO_EXTI1	
+21	PB10	USART3_TX	
+22	PB11	USART3_RX	
+26	PB13	GPIO_Output	LED_RED
+27	PB14	GPIO_Output	LED_GREEN
+28	PB15	GPIO_Output	LED_BLUE
+32	PA11	CAN_RX	
+33	PA12	CAN_TX	
+34	PA13	SYS_JTMS-SWDIO	
+37	PA14	SYS_JTCK-SWCLK	
+45	PB8	I2C1_SCL	
+46	PB9	I2C1_SDA	
+PERIPHERALS	MODES	FUNCTIONS	PINS
+ADC1	IN5	ADC1_IN5	PA5
+CAN	Activated	CAN_RX	PA11
+CAN	Activated	CAN_TX	PA12
+I2C1	I2C	I2C1_SCL	PB8
+I2C1	I2C	I2C1_SDA	PB9
+RCC	Crystal/Ceramic Resonator	RCC_OSC_IN	PD0-OSC_IN
+RCC	Crystal/Ceramic Resonator	RCC_OSC_OUT	PD1-OSC_OUT
+RCC	Crystal/Ceramic Resonator	RCC_OSC32_IN	PC14-OSC32_IN
+RCC	Crystal/Ceramic Resonator	RCC_OSC32_OUT	PC15-OSC32_OUT
+RTC	Activate Clock Source	RTC_VS_RTC_Activate	VP_RTC_VS_RTC_Activate
+RTC	Activate Calendar	RTC_VS_RTC_Calendar	VP_RTC_VS_RTC_Calendar
+RTC	RTC Output on the Tamper pin	RTC_OUT	PC13-TAMPER-RTC
+SYS	Serial Wire	SYS_JTCK-SWCLK	PA14
+SYS	Serial Wire	SYS_JTMS-SWDIO	PA13
+SYS	TIM1	SYS_VS_tim1	VP_SYS_VS_tim1
+USART3	Asynchronous	USART3_RX	PB11
+USART3	Asynchronous	USART3_TX	PB10
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+2	PC13-TAMPER-RTC	RTC_OUT	
+3	PC14-OSC32_IN	RCC_OSC32_IN	
+4	PC15-OSC32_OUT	RCC_OSC32_OUT	
+5	PD0-OSC_IN	RCC_OSC_IN	
+6	PD1-OSC_OUT	RCC_OSC_OUT	
+15	PA5	ADC1_IN5	ANALOG_EXTERNAL
+16	PA6	GPIO_Output	
+19	PB1	GPIO_EXTI1	
+21	PB10	USART3_TX	
+22	PB11	USART3_RX	
+26	PB13	GPIO_Output	LED_RED
+27	PB14	GPIO_Output	LED_GREEN
+28	PB15	GPIO_Output	LED_BLUE
+32	PA11	CAN_RX	
+33	PA12	CAN_TX	
+34	PA13	SYS_JTMS-SWDIO	
+37	PA14	SYS_JTCK-SWCLK	
+45	PB8	I2C1_SCL	
+46	PB9	I2C1_SDA	
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : application_firmware
+Project Folder : C:\Users\DogusYuksel\Desktop\share-vm\application_firmware
+Toolchain / IDE : CMake
+Firmware Package Name and Version : STM32Cube FW_F1 V1.8.6
+
+
+Code Generation Settings : 
+STM32Cube MCU packages and embedded software packs : Copy all used libraries into the project folder
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : Yes
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+

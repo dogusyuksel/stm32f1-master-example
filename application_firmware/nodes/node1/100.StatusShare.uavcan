@@ -1,0 +1,5 @@
+uint32 duration_sec
+uint8[<=33] board_name
+---
+uint8 status
+uint8[<255] reason

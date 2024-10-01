@@ -1,0 +1,11 @@
+--- ./thirdparty/libcanard/drivers/stm32/canard_stm32.c	2024-07-28 22:03:11.918575022 +0100
++++ ./thirdparty/libcanard/drivers/stm32/canard_stm32.c	2024-07-28 22:02:34.480882822 +0100
+@@ -136,7 +136,7 @@
+         }
+ 
+         // Sleep 1 millisecond
+-        usleep(1000);           // TODO: This function may be missing on some platforms
++        // usleep(1000);           // TODO: This function may be missing on some platforms
+     }
+ 
+     return false;
