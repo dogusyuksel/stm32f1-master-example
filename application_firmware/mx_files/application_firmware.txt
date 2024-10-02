@@ -1,6 +1,6 @@
 Configuration	application_firmware
 STM32CubeMX 	6.11.0
-Date	10/01/2024
+Date	10/02/2024
 MCU	STM32F103C8Tx
 
 
