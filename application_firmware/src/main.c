@@ -15,8 +15,10 @@
 #include <string.h>
 
 #define ADC_DMA_BUFFER_LEN 16
-
 #define CURRENT_YEAR 2024
+
+#define LSM6DS_ADDRESS 0x6B
+#define WHO_AM_I_LSM6DS 0x0F // should return 01101010 = 0x6A
 
 uint16_t adc_dma_buffer[ADC_DMA_BUFFER_LEN];
 uint16_t adc_result_in_mv = 0;
@@ -209,6 +211,14 @@ void canardtask(void *data) {
   }
 }
 
+// static uint8_t readByte(uint8_t address, uint8_t subAddress) {
+//   uint8_t tmpByte[1] = {subAddress};
+//   uint8_t data; // data will store on the register data
+//   HAL_I2C_Master_Transmit(&hi2c1, address, tmpByte, 1, 300);
+//   HAL_I2C_Master_Receive(&hi2c1, address, &data, 1, 500);
+//   return data;
+// }
+
 int main(void) {
 
   HAL_Init();
@@ -228,6 +238,12 @@ int main(void) {
   led_control(LED_RED | LED_GREEN | LED_BLUE, LED_RESET);
   set_rtc(CURRENT_YEAR, RTC_MONTH_OCTOBER, 0x01, RTC_WEEKDAY_TUESDAY, 0x13,
           0x34, 0x40);
+
+  // check I2C connections
+  // uint8_t whoAmIRegisterReturn = readByte(LSM6DS_ADDRESS, WHO_AM_I_LSM6DS);
+  //   if (whoAmIRegisterReturn != 0x6A) {
+  //     uart_log("lsm6ds cannot be initialized properly\n");
+  //   }
 
   xTaskCreate(generic_task, "generic_task", 512, NULL, 2, NULL);
   xTaskCreate(canardtask, "canardtask", 1024, NULL, 4, NULL);
