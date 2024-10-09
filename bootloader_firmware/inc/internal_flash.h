@@ -264,7 +264,7 @@
   ADDR_FLASH_PAGE_64 // since our MCU is 103C8, 8 means 64kByte flash
 
 void flash_read(uint32_t address, uint8_t *data, uint32_t len);
-uint32_t flas_write(uint32_t address, uint8_t *data, uint32_t len);
+uint32_t flash_write(uint32_t address, uint8_t *data, uint32_t len);
 uint32_t page_erase(uint32_t starting_address);
 uint32_t clear_flash(uint32_t starting_address);
 

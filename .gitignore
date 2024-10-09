@@ -7,6 +7,8 @@ flash.sh
 *.exe
 application_firmware/generated_files
 application_tool/build
+bootloader_copy_to_ram/build
+application_boot_from_ram/build
 
 # Prerequisites
 *.d

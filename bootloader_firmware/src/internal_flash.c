@@ -50,7 +50,6 @@ uint32_t clear_flash(uint32_t starting_address) {
 void flash_read(uint32_t address, uint8_t *data, uint32_t len) {
   assert((data != NULL) && (len != 0));
   assert(((address + len) <= FLASH_MAX_PAGE_BASE_ADDRESS));
-  assert((address % sizeof(uint32_t)) == 0);
 
   uint32_t Address = address;
   uint32_t i = 0;
@@ -59,7 +58,7 @@ void flash_read(uint32_t address, uint8_t *data, uint32_t len) {
   }
 }
 
-uint32_t flas_write(uint32_t address, uint8_t *data, uint32_t len) {
+uint32_t flash_write(uint32_t address, uint8_t *data, uint32_t len) {
   uint32_t i = 0;
 
   // control the input

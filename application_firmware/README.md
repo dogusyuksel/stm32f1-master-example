@@ -53,10 +53,10 @@ To execute the can sniffer, you need to give interface name. Check application's
 
 ## Compile as an Application FW
 
-1. Check "application_firmware/STM32F103C8Tx_FLASH.ld" file and fix line something else (0x800C800 for eg)
+1. Check "application_firmware/STM32F103C8Tx_FLASH.ld" file and fix line something else (0x800C800 for eg) and decrease the lenght relatively (14K in our case)
 
 ```
-FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 64K
+FLASH (rx)      : ORIGIN = 0x800C800, LENGTH = 64K
 ```
 
 2. goto application_firmware/src/system_stm32f1xx.c and fix "#define VECT_TAB_OFFSET" variables with the same value above

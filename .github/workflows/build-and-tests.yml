@@ -55,3 +55,15 @@ jobs:
     - name: Application Build Check
       run: |
         ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_firmware && ./build.sh"
+
+    - name: Application Tool Build
+      run: |
+        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_tool && ./build.sh"
+
+    - name: Bootloader Copy to RAM Build
+      run: |
+        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_copy_to_ram && ./build.sh"
+
+    - name: Application Run from RAM Build
+      run: |
+        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_boot_from_ram && ./build.sh"

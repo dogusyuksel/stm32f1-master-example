@@ -271,12 +271,12 @@ packet_parse_and_respond(uint8_t *buffer, uint32_t lenght,
   // now, packet is valid
 
   // save it to flash
-  if (flas_write(FLAS_START_ADDRESS + FW_START_ADDRESS +
-                     (global_index * FLASH_PAGE_SIZE),
-                 (uint8_t *)&buffer[starting_idx + PACKET_SYNCH_SIZE +
-                                    PACKET_INDEX_SIZE],
-                 PACKET_PAYLOAD_SIZE)) {
-    uart_log("flas_write() failed\n");
+  if (flash_write(FLAS_START_ADDRESS + FW_START_ADDRESS +
+                      (global_index * FLASH_PAGE_SIZE),
+                  (uint8_t *)&buffer[starting_idx + PACKET_SYNCH_SIZE +
+                                     PACKET_INDEX_SIZE],
+                  PACKET_PAYLOAD_SIZE)) {
+    uart_log("flash_write() failed\n");
     return error_occured;
   }
 
