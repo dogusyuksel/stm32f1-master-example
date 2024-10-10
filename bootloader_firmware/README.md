@@ -25,9 +25,8 @@ cd ..
 2. To build firmware
 
 ```
-./build.sh
-or
-./build Release
+./build.sh       // to compile the project in Debug mode
+./build Release  // to compile the project in Release mode
 ```
 
 3. To build fw flasher
@@ -56,6 +55,47 @@ Bootloader's jump address is PAGE 50 in our case!!
 
 1. You can execute the "start_ocd.sh" to start the OpenOCD.
 2. Proper environent setting for OpenOCD, you may follow thirdparty/docker/Dockerfile
-3. Then follow the instructions inside rhe "start_ocd.sh" script
+3. Then follow the instructions inside the "start_ocd.sh" script
 4. For more gdb usage notes, please check "docs"
+
+## Communication Session Details
+
+### Packet Sequence
+
+Implemented packet sequence is really simple and need to be improved.
+
+Please check the diagram below
+
+![Packet Sequence](./docs/images/packet_sequence.png "Packet Sequence")
+
+
+### Packet Contents
+
+Please note that, whole packets coming from the bootloader to the flasher are ascii based and ending with '\n'
+
+#### Broadcast
+
+"broadcasting\n"
+
+#### Packet
+
+| constant 3 bytes | Counter 1 byte | Data 1024 bytes | CRC 4 bytes |
+| ---------------- | -------------- | --------------- | ----------- |
+| 'KDY'            | IDX            | payload         | CRC32       |
+
+
+Where;
+1. "KDY" bytes are constant
+2. IDX byte is counter starting from 0
+3. payload size is the firmware binary content but FIXED sized (trailler bytes are 0xFF)
+4. CRC32
+
+#### End Packet
+
+End Packet has the same format but the whole payload data is equals to 0xCC
+
+
+#### ACK Packet
+
+"OK:<IDX>\n" where IDX is the same with last Packet content's IDX.
 
