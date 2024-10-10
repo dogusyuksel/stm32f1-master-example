@@ -61,9 +61,16 @@ _Min_Stack_Size = 0x400; /* required amount of stack */
 /* Specify the memory areas */
 MEMORY
 {
-RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 20K
-FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 64K
+RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 6K
+RAM_APPLICATION (xrw)      : ORIGIN = 0x20001800, LENGTH = 14K
+FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 32K
+FLASH_APPLICATION (rx)      : ORIGIN = 0x800C800, LENGTH = 32K
 }
+
+__ram_fwarea_begin = ORIGIN(RAM_APPLICATION) ;
+__ram_fwarea_end = ORIGIN(RAM_APPLICATION) + LENGTH(RAM_APPLICATION) ;
+__flash_fwarea_begin = ORIGIN(FLASH_APPLICATION) ;
+__flashfwarea_end = ORIGIN(FLASH_APPLICATION) + LENGTH(FLASH_APPLICATION) ;
 
 /* Define output sections */
 SECTIONS

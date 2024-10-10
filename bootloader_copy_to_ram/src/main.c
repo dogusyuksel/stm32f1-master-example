@@ -6,6 +6,16 @@
 #include <stdlib.h>
 #include <string.h>
 
+extern uint32_t __ram_fwarea_begin;
+extern uint32_t __ram_fwarea_end;
+#define RAM_FWAREA_BEGIN ((uint32_t)(&__ram_fwarea_begin))
+#define RAM_FWAREA_END ((uint32_t)(&__ram_fwarea_end))
+
+extern uint32_t __flash_fwarea_begin;
+extern uint32_t __flash_fwarea_end;
+#define FLASH_FWAREA_BEGIN ((uint32_t)(&__flash_fwarea_begin))
+#define FLASH_FWAREA_END ((uint32_t)(&__flash_fwarea_end))
+
 void SystemClock_Config(void);
 typedef void (*pFunction)(void);
 
@@ -45,9 +55,9 @@ void copyF2R(uint32_t address) {
   uint32_t *pDst;
 
   pSrc = (uint32_t *)address;
-  pDst = (uint32_t *)0x20001800;
+  pDst = (uint32_t *)RAM_FWAREA_BEGIN;
   /* the size of app is about 32KB with newlib */
-  while (pDst < (uint32_t *)0x20006800) {
+  while (pDst < (uint32_t *)RAM_FWAREA_END) {
     *pDst++ = *pSrc++;
   }
 
@@ -55,7 +65,7 @@ void copyF2R(uint32_t address) {
   snprintf(message, sizeof(message), "copy done\n");
   HAL_UART_Transmit(&huart3, (uint8_t *)message, strlen((char *)message), 500);
 
-  myjump(0x20001800);
+  myjump(RAM_FWAREA_BEGIN);
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
@@ -81,19 +91,34 @@ int main(void) {
 
   HAL_UART_Receive_IT(&huart3, (uint8_t *)&read_byte, 1);
 
+#ifdef COPY_TO_RAM
+  HAL_UART_Transmit(&huart3, (uint8_t *)"It is RAM Bootloader\n", 21, 500);
+#else
+  HAL_UART_Transmit(&huart3, (uint8_t *)"It is FLASH Bootloader\n", 23, 500);
+#endif
+
   while (1) {
     HAL_UART_Transmit(&huart3, (uint8_t *)"waiting address\n", 16, 500);
     HAL_Delay(1000);
 
     if (address_read) {
-      char message[128] = {0};
+      char message[164] = {0};
+#ifdef COPY_TO_RAM
       char *rest;
       uint32_t address = strtoul((char *)buffer, &rest, 16);
       snprintf(message, sizeof(message), "jump address: %s (%lx)\n",
                (char *)buffer, address);
+#else
+      snprintf(message, sizeof(message), "jump address: %lx\n",
+               FLASH_FWAREA_BEGIN);
+#endif
       HAL_UART_Transmit(&huart3, (uint8_t *)message, strlen((char *)message),
                         500);
+#ifdef COPY_TO_RAM
       copyF2R(address);
+#else
+      myjump(FLASH_FWAREA_BEGIN);
+#endif
     }
   }
 }

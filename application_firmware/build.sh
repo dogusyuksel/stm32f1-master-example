@@ -14,6 +14,7 @@ else
 fi
 
 rm -rf build
+rm -rf flash.sh
 mkdir build
 cd build
 ../../thirdparty/linting/format_check.sh ..
@@ -32,5 +33,12 @@ cd -
 if ! [ -f flash.sh ]; then
     echo "st-flash --connect-under-reset write build/application_firmware.bin 0x08000000" >> flash.sh
     chmod +x flash.sh
+fi
+
+
+if ! [ -f erase_flash.sh ]; then
+    echo "#!/bin/bash" >> erase_flash.sh
+    echo "st-flash erase 0x08000000 0x10000" >> erase_flash.sh
+    chmod +x erase_flash.sh
 fi
 

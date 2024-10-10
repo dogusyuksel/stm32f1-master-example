@@ -4,6 +4,7 @@ bootloader_firmware/build/*
 application_firmware/build/*
 .vscode/**
 flash.sh
+erase_flash.sh
 *.exe
 application_firmware/generated_files
 application_tool/build
