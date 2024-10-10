@@ -27,8 +27,13 @@ int main(void) {
   HAL_UART_Receive_IT(&huart3, (uint8_t *)&ch, 1);
 
   while (1) {
+#ifdef BOOT_FROM_RAM
     HAL_UART_Transmit(&huart3, (uint8_t *)"hello from ram application\n", 27,
                       500);
+#else
+    HAL_UART_Transmit(&huart3, (uint8_t *)"hello from flash application\n", 29,
+                      500);
+#endif
     HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
     HAL_Delay(200);
   }

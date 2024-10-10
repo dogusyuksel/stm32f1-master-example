@@ -18,6 +18,12 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
+
+# Define the boot type
+if(NOT COPY_TO)
+    set(COPY_TO "RAM")
+endif()
+
 # Set the project name
 set(CMAKE_PROJECT_NAME bootloader_copy_to_ram)
 

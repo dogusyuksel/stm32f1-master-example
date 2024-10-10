@@ -18,12 +18,23 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
+
+# Define the boot type
+if(NOT BOOT_FROM)
+    set(BOOT_FROM "RAM")
+endif()
+
 # Set the project name
 set(CMAKE_PROJECT_NAME application_boot_from_ram)
 
 # Include toolchain file
 include("gcc-arm-none-eabi.cmake")
-set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -T \"../STM32F103C8Tx_RAM.ld\"")
+
+if(BOOT_FROM MATCHES RAM)
+    set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -T \"../STM32F103C8Tx_RAM.ld\"")
+else()
+    set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -T \"../STM32F103C8Tx_FLASH.ld\"")
+endif()
 
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
