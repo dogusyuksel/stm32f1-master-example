@@ -86,8 +86,13 @@ Please check individual folders' README.md files
 
 [More on RTOS](https://github.com/dogusyuksel/rtos_hal_stm32)
 
-# TODO
+[More on WDT 1](./docs/stm32-IWDT.pdf)
 
-1. WDT implementation
-2. Power Modes usage
+[More on WDT 2](./docs/Watchdog.md)
+
+[More on power modes](./docs/PowerModes.txt)
+
+[More on power PWM](./docs/STM32_tutorial_PWM.pdf)
+
+[And other tutorials](./docs)
 
