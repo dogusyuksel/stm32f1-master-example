@@ -245,8 +245,9 @@ int main(void) {
   //     uart_log("lsm6ds cannot be initialized properly\n");
   //   }
 
-  xTaskCreate(generic_task, "generic_task", 512, NULL, 2, NULL);
-  xTaskCreate(canardtask, "canardtask", 1024, NULL, 4, NULL);
+  xTaskCreate(generic_task, "generic_task", 512, NULL, configMAX_PRIORITIES - 1,
+              NULL);
+  xTaskCreate(canardtask, "canardtask", 1024, NULL, 2, NULL);
   vTaskStartScheduler();
 
   while (1) {
