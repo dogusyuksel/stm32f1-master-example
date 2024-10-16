@@ -245,6 +245,9 @@ int main(void) {
   //     uart_log("lsm6ds cannot be initialized properly\n");
   //   }
 
+  // DMA consumes the RTOS tasks scheduler. So, closed for now
+  // HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adc_dma_buffer, ADC_DMA_BUFFER_LEN);
+
   xTaskCreate(generic_task, "generic_task", 512, NULL, configMAX_PRIORITIES - 1,
               NULL);
   xTaskCreate(canardtask, "canardtask", 1024, NULL, 2, NULL);
