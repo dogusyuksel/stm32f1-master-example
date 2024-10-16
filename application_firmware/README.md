@@ -6,10 +6,10 @@ This project is a container project for the following contents;
 2. I2C usage with lsm6dsm
 3. CANBUS usage
 4. UART usage
-5. RTOS usage and multitasking
+5. RTOS usage, multitasking and HAL usage
 6. RTC Usage
 7. IO operations on STM
-8. HAL Driver usage
+8. DMA usage
 9. PPS Generation
 10. ADC Usage
 
