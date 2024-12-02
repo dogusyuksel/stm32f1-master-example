@@ -15,6 +15,11 @@ jobs:
         github-server-url: https://github.com/dogusyuksel/stm32f1-master-example.git
         lfs: true
 
+    - name: clone docker
+      run: |
+        ./setup_environment.sh
+        git clone https://github.com/dogusyuksel/embedded_docker.git docker
+
     - name: Setup Environment
       run: |
         ./setup_environment.sh
