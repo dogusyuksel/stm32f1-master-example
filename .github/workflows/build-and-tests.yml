@@ -61,7 +61,7 @@ jobs:
 
     - name: Application Env
       run: |
-        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/thirdparty && patch -d . -p1 < ./patches/transport.py.patch && patch -d . -p1 < ./patches/canard_stm32.patch"
+        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/thirdparty && patch -d . -p1 < ../patches/transport.py.patch && patch -d . -p1 < ../patches/canard_stm32.patch"
 
     - name: Application Build Check
       run: |
