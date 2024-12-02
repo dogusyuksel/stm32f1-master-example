@@ -24,7 +24,7 @@ jobs:
 
     - name: clone docker
       run: |
-        git clone https://github.com/dogusyuksel/embedded_docker.git thirdparty/docker
+        git clone https://github.com/dogusyuksel/embedded_docker.git
 
     - name: Login to Docker Hub
       uses: docker/login-action@v3
@@ -42,35 +42,35 @@ jobs:
         tags: |
           ${{ secrets.DOCKER_REPO }}:master
         context: .
-        file: thirdparty/docker/Dockerfile
+        file: Dockerfile
         pull: true
         push: false
         provenance: false
 
     - name: Bootloader Build Check
       run: |
-        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_firmware && ./build.sh"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_firmware && ./build.sh"
 
     - name: Bootloader Test Check
       run: |
-        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_firmware && ceedling clean && ceedling test:all"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_firmware && ceedling clean && ceedling test:all"
 
     - name: Bootloader Tool Build
       run: |
-        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_tool && make"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_tool && make"
 
     - name: Application Build Check
       run: |
-        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_firmware && ./build.sh"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_firmware && ./build.sh"
 
     - name: Application Tool Build
       run: |
-        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_tool && ./build.sh"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_tool && ./build.sh"
 
     - name: Bootloader Copy to RAM Build
       run: |
-        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_copy_to_ram && ./build.sh"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_copy_to_ram && ./build.sh"
 
     - name: Application Run from RAM Build
       run: |
-        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_boot_from_ram && ./build.sh"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_boot_from_ram && ./build.sh"
