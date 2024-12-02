@@ -59,10 +59,6 @@ jobs:
       run: |
         ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_tool && make"
 
-    - name: Application Env
-      run: |
-        ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace && patch -d . -p1 < ./patches/transport.py.patch && patch -d . -p1 < ./patches/canard_stm32.patch"
-
     - name: Application Build Check
       run: |
         ./thirdparty/docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_firmware && ./build.sh"
