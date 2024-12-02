@@ -24,7 +24,6 @@ jobs:
 
     - name: clone docker
       run: |
-        ./setup_environment.sh
         git clone https://github.com/dogusyuksel/embedded_docker.git thirdparty/docker
 
     - name: Setup Environment
