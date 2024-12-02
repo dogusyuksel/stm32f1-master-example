@@ -10,6 +10,13 @@ jobs:
   build-and-test-build-job:
     runs-on: ubuntu-latest
     steps:
+    - name: Remove unnecessary files
+      run: |
+        df . -h
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+        df . -h
+
     - uses: actions/checkout@v4
       with:
         github-server-url: https://github.com/dogusyuksel/stm32f1-master-example.git
@@ -22,7 +29,8 @@ jobs:
 
     - name: Setup Environment
       run: |
-        ./setup_environment.sh
+        patch -d . -p1 < ./patches/transport.py.patch
+        patch -d . -p1 < ./patches/canard_stm32.patch
 
     - name: Login to Docker Hub
       uses: docker/login-action@v3
