@@ -25,7 +25,7 @@ rm -rf build
 rm -rf flash.sh
 mkdir build
 cd build
-../../thirdparty/linting/format_check.sh ..
+/thirdparty/linting/format_check.sh ..
 
 # if there is one arg, then consider it Release build
 if [ "$is_debug" -eq 1 ]; then
