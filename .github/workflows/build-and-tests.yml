@@ -18,7 +18,7 @@ jobs:
     - name: clone docker
       run: |
         git clone https://github.com/dogusyuksel/embedded_docker.git docker
-        cp -f docker/* .
+        cp -rf docker/* .
 
     - name: Remove unnecessary files
       run: |
