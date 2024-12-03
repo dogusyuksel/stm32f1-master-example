@@ -30,7 +30,7 @@ rm -rf build
 rm -rf flash.sh
 mkdir build
 cd build
-../../thirdparty/linting/format_check.sh ..
+/thirdparty/linting/format_check.sh ..
 
 app_name="copy_to_ram_debug"
 # if there is one arg, then consider it Release build
