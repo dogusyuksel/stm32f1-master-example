@@ -17,7 +17,7 @@ Covered features is like;
 9. PPS Generation
 10. ADC Usage
 
-## [bootloade_firmware](https://github.com/dogusyuksel/stm32f1-master-example/tree/master/bootloader_firmware)
+## [bootloader_firmware](https://github.com/dogusyuksel/stm32f1-master-example/tree/master/bootloader_firmware)
 
 1. github actions
 2. unity ceedling unit tests
