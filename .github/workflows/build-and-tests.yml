@@ -1,4 +1,4 @@
-name: build-and-test
+name: general-tests
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -7,7 +7,7 @@ concurrency:
 on: [pull_request]
 
 jobs:
-  build-and-test-build-job:
+  general-tests-job:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -15,60 +15,20 @@ jobs:
         github-server-url: https://github.com/dogusyuksel/stm32f1-master-example.git
         lfs: true
 
-    - name: clone docker
-      run: |
-        git clone https://github.com/dogusyuksel/embedded_docker.git docker
-        cp -rf docker/* .
-
-    - name: Remove unnecessary files
-      run: |
-        ./free_space.sh
-
-    - name: Login to Docker Hub
-      uses: docker/login-action@v3
+    - uses: dorny/paths-filter@v3
+      id: changes
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        filters: |
+          version:
+            - 'VERSION'
+          changelog:
+            - 'CHANGELOG.md'
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-
-    - name: Build Project Docker
-      uses: docker/build-push-action@v5
-      with:
-        load: true
-        tags: |
-          ${{ secrets.DOCKER_REPO }}:master
-        context: .
-        file: Dockerfile
-        pull: true
-        push: false
-        provenance: false
-
-    - name: Bootloader Build Check
+    - name: check version and changelog
+      if: steps.changes.outputs.version == 'false' || steps.changes.outputs.changelog == 'false'
       run: |
-        ./docker/sudo_run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_firmware && ./build.sh"
+        exit 1
 
-    - name: Bootloader Test Check
+    - name: build
       run: |
-        ./docker/sudo_run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_firmware && ceedling clean && ceedling test:all"
-
-    - name: Bootloader Tool Build
-      run: |
-        ./docker/sudo_run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_tool && make"
-
-    - name: Application Build Check
-      run: |
-        ./docker/sudo_run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_firmware && ./build.sh"
-
-    - name: Application Tool Build
-      run: |
-        ./docker/sudo_run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_tool && ./build.sh"
-
-    - name: Bootloader Copy to RAM Build
-      run: |
-        ./docker/sudo_run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bootloader_copy_to_ram && ./build.sh"
-
-    - name: Application Run from RAM Build
-      run: |
-        ./docker/sudo_run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/application_boot_from_ram && ./build.sh"
+        ./local_actions.sh
