@@ -36,7 +36,7 @@ RUN apt-get update && \
         unzip && \
     apt-get -y clean
 
-RUN gem install ceedling
+RUN gem install ceedling -v 0.31.1
 RUN pip install gcovr
 
 RUN git config --global --add safe.directory /workspace
