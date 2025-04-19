@@ -3,6 +3,7 @@ thirdparty/*
 bootloader_firmware/build/*
 application_firmware/build/*
 .vscode/**
+.vscode
 flash.sh
 erase_flash.sh
 *.exe

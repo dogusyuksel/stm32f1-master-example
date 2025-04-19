@@ -1,7 +1,6 @@
 #ifdef TEST
 
 #include "unity.h"
-
 #include "crc.h"
 
 void setUp(void)

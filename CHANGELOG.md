@@ -1,3 +1,7 @@
+## 1.0.1
+
+- ceedling docker version fixed
+
 ## 1.0.0
 
 - CHANGELOG.md and VERSION added

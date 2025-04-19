@@ -37,7 +37,12 @@
     - -:test/support
   :source:
     - src/**
+    - /thirdparty/STM32F103X_HAL/Src/**
+  :include:
     - inc/**
+    - /thirdparty/STM32F103X_HAL/Inc/**
+    - /thirdparty/cmsis-header-stm32/stm32f1xx/Include/**
+    - /thirdparty/CMSIS_5/CMSIS/Core/Include/**
   :support:
     - test/support
   :libraries: []
@@ -80,6 +85,7 @@
     - <stdint.h>
     - <stdio.h>
     - "crc.h"
+    - "mc25lc512.h"
 :flags:
   :test:
     :compile:
