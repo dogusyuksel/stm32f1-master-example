@@ -14,17 +14,17 @@ target_compile_definitions(stm32cubemx INTERFACE
 
 target_include_directories(stm32cubemx INTERFACE
     ../../inc
-    /thirdparty/STM32F103X_HAL/Inc
-    /thirdparty/STM32F103X_HAL/Inc/Legacy
-    /thirdparty/cmsis-header-stm32/stm32f1xx/Include
-    /thirdparty/CMSIS_5/CMSIS/Core/Include
-    /thirdparty/FreeRTOS-Kernel/include
-    /thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM3
-    /thirdparty/custom_printf
+    /workspace/thirdparty/STM32F103X_HAL/Inc
+    /workspace/thirdparty/STM32F103X_HAL/Inc/Legacy
+    /workspace/thirdparty/cmsis-header-stm32/stm32f1xx/Include
+    /workspace/thirdparty/CMSIS_5/CMSIS/Core/Include
+    /workspace/thirdparty/FreeRTOS-Kernel/include
+    /workspace/thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM3
+    /workspace/thirdparty/custom_printf
 )
 
 file(GLOB free_rtos_all
-     "/thirdparty/FreeRTOS-Kernel/*.c"
+     "/workspace/thirdparty/FreeRTOS-Kernel/*.c"
 )
 
 file(GLOB files_under_src
@@ -35,24 +35,24 @@ target_sources(stm32cubemx INTERFACE
     ${free_rtos_all}
     ${files_under_src}
     ../../startup_stm32f103xb.s
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio_ex.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_spi.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc_ex.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_dma.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_cortex.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_pwr.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash_ex.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_exti.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim_ex.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_uart.c
-    /thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM3/port.c
-    /thirdparty/FreeRTOS-Kernel/portable/MemMang/heap_3.c
-    /thirdparty/custom_printf/printf.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio_ex.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_spi.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc_ex.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_dma.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_cortex.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_pwr.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash_ex.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_exti.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim_ex.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_uart.c
+    /workspace/thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM3/port.c
+    /workspace/thirdparty/FreeRTOS-Kernel/portable/MemMang/heap_3.c
+    /workspace/thirdparty/custom_printf/printf.c
 )
 
 target_link_directories(stm32cubemx INTERFACE

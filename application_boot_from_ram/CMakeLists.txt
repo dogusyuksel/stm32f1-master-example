@@ -48,20 +48,20 @@ message("Build type: " ${CMAKE_BUILD_TYPE})
 
 
 add_executable(${CMAKE_PROJECT_NAME}
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio_ex.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim_ex.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_uart.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc_ex.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_dma.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_cortex.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_pwr.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash_ex.c
-    /thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_exti.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio_ex.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim_ex.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_uart.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc_ex.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_dma.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_cortex.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_pwr.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash_ex.c
+    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_exti.c
     src/gpio.c
     src/main.c
     src/stm32f1xx_hal_msp.c
@@ -76,10 +76,10 @@ add_executable(${CMAKE_PROJECT_NAME}
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC SYSTEM
     inc
-    /thirdparty/STM32F103X_HAL/Inc
-    /thirdparty/STM32F103X_HAL/Inc/Legacy
-    /thirdparty/cmsis-header-stm32/stm32f1xx/Include
-    /thirdparty/CMSIS_5/CMSIS/Core/Include
+    /workspace/thirdparty/STM32F103X_HAL/Inc
+    /workspace/thirdparty/STM32F103X_HAL/Inc/Legacy
+    /workspace/thirdparty/cmsis-header-stm32/stm32f1xx/Include
+    /workspace/thirdparty/CMSIS_5/CMSIS/Core/Include
 )
 
 
