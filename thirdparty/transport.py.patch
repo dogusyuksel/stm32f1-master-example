@@ -1,0 +1,11 @@
+--- ./libcanard/dsdl_compiler/pyuavcan/uavcan/transport.py
++++ ./libcanard/dsdl_compiler/pyuavcan/uavcan/transport.py
+@@ -315,7 +315,7 @@
+                 raise ValueError('Bad float, no donut')
+             self._bits = format(int_value, "0" + str(self._type.bitlen) + "b")
+ 
+-
++collections.MutableSequence = collections.abc.MutableSequence
+ # noinspection PyProtectedMember
+ class ArrayValue(BaseValue, collections.MutableSequence):
+     def __init__(self, _uavcan_type, *args, **kwargs):

@@ -1,0 +1,11 @@
+--- ./libcanard/drivers/stm32/canard_stm32.c
++++ ./libcanard/drivers/stm32/canard_stm32.c
+@@ -136,7 +136,7 @@
+         }
+ 
+         // Sleep 1 millisecond
+-        usleep(1000);           // TODO: This function may be missing on some platforms
++        // usleep(1000);           // TODO: This function may be missing on some platforms
+     }
+ 
+     return false;
