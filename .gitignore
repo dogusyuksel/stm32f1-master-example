@@ -1,4 +1,5 @@
 # custom ignores
+thirdparty/*
 bootloader_firmware/build/*
 application_firmware/build/*
 .vscode/**
