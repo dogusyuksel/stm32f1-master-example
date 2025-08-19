@@ -1,3 +1,7 @@
+## 1.1.0
+
+- git submodules added
+
 ## 1.0.1
 
 - ceedling docker version fixed

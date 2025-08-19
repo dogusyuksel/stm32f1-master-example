@@ -37,12 +37,12 @@
     - -:test/support
   :source:
     - src/**
-    - /thirdparty/STM32F103X_HAL/Src/**
+    - /workspace/thirdparty/STM32F103X_HAL/Src/**
   :include:
     - inc/**
-    - /thirdparty/STM32F103X_HAL/Inc/**
-    - /thirdparty/cmsis-header-stm32/stm32f1xx/Include/**
-    - /thirdparty/CMSIS_5/CMSIS/Core/Include/**
+    - /workspace/thirdparty/STM32F103X_HAL/Inc/**
+    - /workspace/thirdparty/cmsis-header-stm32/stm32f1xx/Include/**
+    - /workspace/thirdparty/CMSIS_5/CMSIS/Core/Include/**
   :support:
     - test/support
   :libraries: []

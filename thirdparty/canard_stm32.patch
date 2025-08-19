@@ -1,5 +1,5 @@
---- /thirdparty/libcanard/drivers/stm32/canard_stm32.c	2024-07-28 22:03:11.918575022 +0100
-+++ /thirdparty/libcanard/drivers/stm32/canard_stm32.c	2024-07-28 22:02:34.480882822 +0100
+--- ./libcanard/drivers/stm32/canard_stm32.c
++++ ./libcanard/drivers/stm32/canard_stm32.c
 @@ -136,7 +136,7 @@
          }
  

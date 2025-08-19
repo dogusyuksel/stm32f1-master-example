@@ -1,5 +1,5 @@
---- /thirdparty/libcanard/dsdl_compiler/pyuavcan/uavcan/transport.py	2024-07-26 16:06:48.899239901 +0100
-+++ /thirdparty/libcanard/dsdl_compiler/pyuavcan/uavcan/transport.py	2024-07-26 16:06:42.164516871 +0100
+--- ./libcanard/dsdl_compiler/pyuavcan/uavcan/transport.py
++++ ./libcanard/dsdl_compiler/pyuavcan/uavcan/transport.py
 @@ -315,7 +315,7 @@
                  raise ValueError('Bad float, no donut')
              self._bits = format(int_value, "0" + str(self._type.bitlen) + "b")
