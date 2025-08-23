@@ -1,24 +1,32 @@
 [submodule "thirdparty/cmsis-header-stm32"]
 	path = thirdparty/cmsis-header-stm32
 	url = https://github.com/modm-io/cmsis-header-stm32.git
+    ignore = all
 [submodule "thirdparty/CMSIS_5"]
 	path = thirdparty/CMSIS_5
 	url = https://github.com/ARM-software/CMSIS_5.git
+    ignore = all
 [submodule "thirdparty/FreeRTOS-Kernel"]
 	path = thirdparty/FreeRTOS-Kernel
 	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+    ignore = all
 [submodule "thirdparty/STM32F103X_HAL"]
 	path = thirdparty/STM32F103X_HAL
 	url = https://github.com/STMicroelectronics/stm32f1xx_hal_driver.git
+    ignore = all
 [submodule "thirdparty/linting"]
 	path = thirdparty/linting
 	url = https://github.com/dogusyuksel/embedded_linting.git
+    ignore = all
 [submodule "thirdparty/custom_printf"]
 	path = thirdparty/custom_printf
 	url = https://github.com/mpaland/printf.git
+    ignore = all
 [submodule "thirdparty/openocd"]
 	path = thirdparty/openocd
 	url = https://github.com/STMicroelectronics/OpenOCD.git
+    ignore = all
 [submodule "thirdparty/libcanard"]
 	path = thirdparty/libcanard
 	url = https://github.com/OpenCyphal/libcanard.git
+    ignore = all
