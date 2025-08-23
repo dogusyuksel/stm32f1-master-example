@@ -1,0 +1,6 @@
+using "./stm32f103.repl"
+
+greenled: Miscellaneous.LED @ gpioPortB 14
+
+gpioPortB:
+    14 -> greenled@0

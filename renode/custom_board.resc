@@ -1,0 +1,15 @@
+using sysbus
+
+mach create
+
+machine LoadPlatformDescription @./custom_board.repl
+
+sysbus LoadELF @./renode_custom_board/build/renode_custom_board.elf
+
+showAnalyzer usart3
+
+emulation RunFor "10s"
+
+start
+
+quit

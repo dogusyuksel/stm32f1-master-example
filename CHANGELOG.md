@@ -1,3 +1,7 @@
+## 1.2.0
+
+- renode example added
+
 ## 1.1.0
 
 - git submodules added
