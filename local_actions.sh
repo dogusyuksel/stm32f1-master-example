@@ -10,3 +10,4 @@ set -euo pipefail
 ./docker_ctl.sh -c 'cd /workspace/application_tool && ./build.sh'
 ./docker_ctl.sh -c 'cd /workspace/bootloader_copy_to_ram && ./build.sh'
 ./docker_ctl.sh -c 'cd /workspace/application_boot_from_ram && ./build.sh'
+./docker_ctl.sh -s -c 'cd /workspace/renode/renode_custom_board && ./build.sh && cd /workspace/renode && ./execute_test.sh'
