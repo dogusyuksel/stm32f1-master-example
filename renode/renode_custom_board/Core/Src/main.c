@@ -4,6 +4,10 @@
 #include "spi.h"
 #include "usart.h"
 
+#define LSM6DS_ADDRESS 0x6B
+#define WHO_AM_I_LSM6DS 0x0F // should return 01101010 = 0x6A
+#define MC25LCxxx_SPI_RDSR 0x05
+
 void SystemClock_Config(void);
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
@@ -22,10 +26,24 @@ int main(void) {
   MX_SPI1_Init();
   MX_USART3_UART_Init();
 
+  char data[] = "Hello, STM32!!\r\n";
+  HAL_UART_Transmit(&huart3, data, sizeof(data)-1, 100);
+  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
+
+  HAL_Delay(5000);
+  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
+
+  // check I2C connections
+  unsigned char tmpByte[1];
+  tmpByte[0] = WHO_AM_I_LSM6DS;
+  HAL_I2C_Master_Transmit(&hi2c1, LSM6DS_ADDRESS, tmpByte, 1, 300);
+
+  // check SPI
+  tmpByte[0] = MC25LCxxx_SPI_RDSR;
+  HAL_SPI_Transmit(&hspi1, &tmpByte, 1, 200);
+
   while (1) {
     HAL_Delay(5000);
-    char data[] = "Hello, STM32!!\r\n";
-    HAL_UART_Transmit(&huart3, data, sizeof(data)-1, 100);
   }
 }
 
