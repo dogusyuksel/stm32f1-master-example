@@ -1,3 +1,7 @@
+## 1.2.1
+
+- renode gpio inp/out, i2c and spi example added
+
 ## 1.2.0
 
 - renode example added
