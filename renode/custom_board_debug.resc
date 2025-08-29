@@ -1,0 +1,9 @@
+using sysbus
+
+mach create
+
+machine LoadPlatformDescription @./custom_board.repl
+
+sysbus LoadELF @./renode_custom_board/build/renode_custom_board.elf
+
+machine StartGdbServer 3333 true
