@@ -1,5 +1,14 @@
 #!/bin/bash
 
+git config --global --add safe.directory /workspace/thirdparty/CMSIS_5
+git config --global --add safe.directory /workspace/thirdparty/FreeRTOS-Kernel
+git config --global --add safe.directory /workspace/thirdparty/STM32F103X_HAL
+git config --global --add safe.directory /workspace/thirdparty/cmsis-header-stm32
+git config --global --add safe.directory /workspace/thirdparty/custom_printf
+git config --global --add safe.directory /workspace/thirdparty/libcanard
+git config --global --add safe.directory /workspace/thirdparty/linting
+git config --global --add safe.directory /workspace/thirdparty/openocd
+
 cd /workspace && git submodule update --init --recursive
 # cd /workspace/thirdparty/libcanard && git checkout 43de1c4966b8d1e5d57978949d63e697f045b358
 cd /workspace/thirdparty/libcanard && git submodule update --init --recursive
