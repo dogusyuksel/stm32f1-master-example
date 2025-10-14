@@ -7,6 +7,7 @@ set -euo pipefail
 ./docker_ctl.sh -c 'cd /workspace/bootloader_firmware && ceedling clean && ceedling test:all'
 ./docker_ctl.sh -c 'cd /workspace/bootloader_tool && make'
 ./docker_ctl.sh -c 'cd /workspace/application_firmware && ./build.sh'
+./docker_ctl.sh -c 'cd /workspace/application_firmware && ./build.sh libcsp'
 ./docker_ctl.sh -c 'cd /workspace/application_tool && ./build.sh'
 ./docker_ctl.sh -c 'cd /workspace/bootloader_copy_to_ram && ./build.sh'
 ./docker_ctl.sh -c 'cd /workspace/application_boot_from_ram && ./build.sh'

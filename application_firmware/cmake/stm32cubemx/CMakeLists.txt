@@ -6,17 +6,14 @@ add_library(stm32cubemx INTERFACE)
 # Enable CMake support for ASM and C languages
 enable_language(C ASM)
 
-target_compile_definitions(stm32cubemx INTERFACE 
-	USE_HAL_DRIVER 
+target_compile_definitions(stm32cubemx INTERFACE
+	USE_HAL_DRIVER
 	STM32F103xB
     $<$<CONFIG:Debug>:DEBUG>
 )
 
 target_include_directories(stm32cubemx INTERFACE
     ../../inc
-    /workspace/thirdparty/libcanard
-    /workspace/thirdparty/libcanard/drivers/stm32
-    ../../generated_files
     /workspace/thirdparty/STM32F103X_HAL/Inc
     /workspace/thirdparty/STM32F103X_HAL/Inc/Legacy
     /workspace/thirdparty/cmsis-header-stm32/stm32f1xx/Include
@@ -25,6 +22,29 @@ target_include_directories(stm32cubemx INTERFACE
     /workspace/thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM3
     /workspace/thirdparty/custom_printf
 )
+
+if(CAN_TYPE STREQUAL "LIBCANARD")
+    target_include_directories(stm32cubemx INTERFACE
+        ../../inc/libcanard_freertos
+        ../../generated_files
+        /workspace/thirdparty/libcanard
+        /workspace/thirdparty/libcanard/drivers/stm32
+    )
+    target_compile_definitions(stm32cubemx INTERFACE
+        USE_LIBCANARD
+    )
+    message("CAN_TYPE: LIBCANARD selected")
+elseif(CAN_TYPE STREQUAL "LIBCSP")
+    target_include_directories(stm32cubemx INTERFACE
+        ../../inc/libcsp_freertos
+        /workspace/thirdparty/libcsp/include
+        /workspace/thirdparty/libcsp/build/include
+    )
+    target_compile_definitions(stm32cubemx INTERFACE
+        USE_LIBCSP
+    )
+    message("CAN_TYPE: LIBCSP selected")
+endif()
 
 file(GLOB free_rtos_all
      "/workspace/thirdparty/FreeRTOS-Kernel/*.c"
@@ -41,7 +61,6 @@ file(GLOB_RECURSE generated_files
 target_sources(stm32cubemx INTERFACE
     ${free_rtos_all}
     ${files_under_src}
-    ${generated_files}
     ../../startup_stm32f103xb.s
     /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio_ex.c
     /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_adc.c
@@ -66,15 +85,26 @@ target_sources(stm32cubemx INTERFACE
     /workspace/thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM3/port.c
     /workspace/thirdparty/FreeRTOS-Kernel/portable/MemMang/heap_3.c
     /workspace/thirdparty/custom_printf/printf.c
-    /workspace/thirdparty/libcanard/canard.c
-    /workspace/thirdparty/libcanard/drivers/stm32/canard_stm32.c
 )
 
-target_link_directories(stm32cubemx INTERFACE
-)
+if(CAN_TYPE STREQUAL "LIBCANARD")
+    target_sources(stm32cubemx INTERFACE
+        ${generated_files}
+        /workspace/thirdparty/libcanard/canard.c
+        /workspace/thirdparty/libcanard/drivers/stm32/canard_stm32.c
+    )
+elseif(CAN_TYPE STREQUAL "LIBCSP")
+    target_sources(stm32cubemx INTERFACE
+        /workspace/thirdparty/libcsp/contrib/atomics/atomics_freertos_gcc.c
+    )
+    target_link_directories(stm32cubemx INTERFACE
+        /workspace/thirdparty/libcsp/build
+    )
 
-target_link_libraries(stm32cubemx INTERFACE
-)
+    target_link_libraries(stm32cubemx INTERFACE
+        csp
+    )
+endif()
 
 # Validate that STM32CubeMX code is compatible with C standard
 if(CMAKE_C_STANDARD LESS 11)

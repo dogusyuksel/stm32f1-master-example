@@ -18,6 +18,12 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
+if(NOT LIBCSP)
+    set(CAN_TYPE "LIBCANARD")
+else()
+    set(CAN_TYPE "LIBCSP")
+endif()
+
 # Set the project name
 set(CMAKE_PROJECT_NAME application_firmware)
 

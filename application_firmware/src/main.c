@@ -8,11 +8,22 @@
 #include "printf.h"
 #include "rtc.h"
 #include "task.h"
-#include "uavcan.h"
 #include "usart.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+
+#ifdef USE_LIBCANARD
+#include "uavcan.h"
+#else
+#include "libcsp.h"
+
+// Provide GCC atomic sync barrier fallback for Cortex-M (no hardware atomics)
+void __sync_synchronize(void) {
+    __asm volatile ("" ::: "memory");
+}
+
+#endif
 
 #define ADC_DMA_BUFFER_LEN 16
 #define CURRENT_YEAR 2024
@@ -198,6 +209,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
   adc_result_in_mv = ((3300 * sum) / 4095);
 }
 
+#ifdef USE_LIBCANARD
 void canardtask(void *data) {
   (void)data;
   uavcanInit();
@@ -210,6 +222,18 @@ void canardtask(void *data) {
     taskYIELD();
   }
 }
+#else
+
+
+// // ---- FreeRTOS task to run CSP ----
+// void libcsptask(void *pvParameters) {
+//     (void)pvParameters;
+//     for (;;) {
+//         csp_poll();
+//         vTaskDelay(pdMS_TO_TICKS(10));
+//     }
+// }
+#endif
 
 // static uint8_t readByte(uint8_t address, uint8_t subAddress) {
 //   uint8_t tmpByte[1] = {subAddress};
@@ -232,6 +256,7 @@ int main(void) {
   MX_I2C1_Init();
   MX_RTC_Init();
   MX_USART3_UART_Init();
+  csp2_can_init();
 
   uart_log("application started!\n");
 
@@ -250,7 +275,11 @@ int main(void) {
 
   xTaskCreate(generic_task, "generic_task", 512, NULL, configMAX_PRIORITIES - 1,
               NULL);
+#ifdef USE_LIBCANARD
   xTaskCreate(canardtask, "canardtask", 1024, NULL, 2, NULL);
+#else
+  csp_start_tasks();
+#endif
   vTaskStartScheduler();
 
   while (1) {
