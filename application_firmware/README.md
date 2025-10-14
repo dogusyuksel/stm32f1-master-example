@@ -27,8 +27,8 @@ cd ..
 2. To build firmware
 
 ```
-./build.sh      // to build the project in Debug mode
-./build Release // to build the project in Release mode
+./build.sh      // to build the project with libcanard by default
+./build libcsp // to build the project with libcsp
 ```
 
 3. To build CAN PC Sniffer

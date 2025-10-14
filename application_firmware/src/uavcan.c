@@ -1,3 +1,5 @@
+#ifdef USE_LIBCANARD
+
 #include "uavcan.h"
 #include "canard.h"
 #include "canard_stm32.h"
@@ -254,3 +256,5 @@ void spinCanard(void) {
     uart_log("broadcast failed\n)");
   }
 }
+
+#endif // USE_LIBCANARD

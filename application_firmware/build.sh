@@ -1,15 +1,27 @@
 #!/bin/bash
 
-if [ -d "generated_files" ]; then
-    sudo rm -rf generated_files
-fi
-/workspace/thirdparty/libcanard/dsdl_compiler/libcanard_dsdlc ./nodes --incdir /workspace/thirdparty/libcanard/dsdl_compiler/pyuavcan/uavcan --outdir ./generated_files
-if [[ $? = 0 ]]; then
-    echo "success"
+# with any argument, it will build for libcsp
+
+if [ "$#" -eq 0 ]; then
+    if [ -d "generated_files" ]; then
+        rm -rf generated_files
+    fi
+    /workspace/thirdparty/libcanard/dsdl_compiler/libcanard_dsdlc ./nodes --incdir /workspace/thirdparty/libcanard/dsdl_compiler/pyuavcan/uavcan --outdir ./generated_files
+    if [[ $? = 0 ]]; then
+        echo "success"
+    else
+        # then try with my docker
+        cd ..
+        /workspace/thirdparty/docker/run_docker.sh golden-sample:latest "cd /workspace && /workspace/thirdparty/libcanard/dsdl_compiler/libcanard_dsdlc ./application_firmware/nodes --incdir /workspace/thirdparty/libcanard/dsdl_compiler/pyuavcan/uavcan --outdir ./application_firmware/generated_files"
+        cd -
+    fi
 else
-    # then try with my docker
-    cd ..
-    /workspace/thirdparty/docker/run_docker.sh golden-sample:latest "cd /workspace && /workspace/thirdparty/libcanard/dsdl_compiler/libcanard_dsdlc ./application_firmware/nodes --incdir /workspace/thirdparty/libcanard/dsdl_compiler/pyuavcan/uavcan --outdir ./application_firmware/generated_files"
+    rm -rf generated_files
+    cd /workspace/thirdparty/libcsp
+    rm -rf build
+    ./waf configure --with-os=freertos --toolchain=arm-none-eabi- --includes=/workspace/thirdparty/FreeRTOS-Kernel,/workspace/thirdparty/FreeRTOS-Kernel/include,/workspace/thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM3,/workspace/application_firmware/inc/libcsp_freertos
+    ./waf clean
+    ./waf build
     cd -
 fi
 
@@ -17,11 +29,10 @@ rm -rf build
 rm -rf flash.sh
 mkdir build
 cd build
-/workspace/thirdparty/linting/format_check.sh ..
 
-# if there is one arg, then consider it Release build
+# if there is one arg, then consider it will be build for libcsp
 if [ "$#" -eq 1 ]; then
-    cmake -DCMAKE_BUILD_TYPE=Release ..
+    cmake -DLIBCSP=libcsp ..
 else
     cmake ..
 fi

@@ -1,4 +1,5 @@
 #include "can.h"
+#include "FreeRTOS.h"
 
 CAN_HandleTypeDef hcan;
 
@@ -38,6 +39,12 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle) {
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+    
+    HAL_NVIC_SetPriority(CAN1_RX0_IRQn,
+                         configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY + 1,
+                         configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY + 1);
+    HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
   }
 }
 

@@ -1,3 +1,4 @@
+#ifdef USE_LIBCANARD
 #include "canard.h"
 #include "canard_stm32.h"
 #include "main.h"
@@ -11,3 +12,5 @@ void uavcanInit(void);
 void sendCanard(void);
 void receiveCanard(void);
 void spinCanard(void);
+
+#endif // USE_LIBCANARD
