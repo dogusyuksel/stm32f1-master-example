@@ -1,3 +1,7 @@
+## 1.2.2
+
+- made it suitable to other workspaces
+
 ## 1.2.1
 
 - renode gpio inp/out, i2c and spi example added

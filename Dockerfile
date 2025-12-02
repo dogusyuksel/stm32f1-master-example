@@ -47,10 +47,6 @@ RUN wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/g
     tar -xf gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
 ENV PATH="/gcc-arm-none-eabi-10.3-2021.10/bin:${PATH}"
 
-COPY thirdparty/renode_1.16.0_amd64.deb /tmp/
-RUN apt-get update && apt-get install -y ./tmp/renode_1.16.0_amd64.deb \
- && rm /tmp/renode_1.16.0_amd64.deb
-
 CMD ["/bin/bash"]
 
 WORKDIR /workspace/

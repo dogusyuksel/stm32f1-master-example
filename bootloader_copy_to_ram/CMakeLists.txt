@@ -45,31 +45,34 @@ file(GLOB files_under_src
      "src/*.c"
 )
 
+set(WORKSPACE_PATH "$ENV{WORKSPACE}")
+set(THIRDPARTY_PATH "$ENV{THIRDPARTY}")
+
 add_executable(${CMAKE_PROJECT_NAME}
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio_ex.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim_ex.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_uart.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc_ex.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_dma.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_cortex.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_pwr.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash_ex.c
-    /workspace/thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_exti.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_gpio_ex.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_tim.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_tim_ex.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_uart.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_rcc.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_rcc_ex.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_gpio.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_dma.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_cortex.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_pwr.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_flash.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_flash_ex.c
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Src/stm32f1xx_hal_exti.c
     ${files_under_src}
     startup_stm32f103xb.s
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC SYSTEM
     inc
-    /workspace/thirdparty/STM32F103X_HAL/Inc
-    /workspace/thirdparty/STM32F103X_HAL/Inc/Legacy
-    /workspace/thirdparty/cmsis-header-stm32/stm32f1xx/Include
-    /workspace/thirdparty/CMSIS_5/CMSIS/Core/Include
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Inc
+    ${THIRDPARTY_PATH}/STM32F103X_HAL/Inc/Legacy
+    ${THIRDPARTY_PATH}/cmsis-header-stm32/stm32f1xx/Include
+    ${THIRDPARTY_PATH}/CMSIS_5/CMSIS/Core/Include
 )
 
 

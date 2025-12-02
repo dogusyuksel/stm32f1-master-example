@@ -2,7 +2,6 @@
 thirdparty/op
 bootloader_firmware/build/*
 application_firmware/build/*
-renode/renode_custom_board/build/*
 .vscode/**
 .vscode
 flash.sh

@@ -14,10 +14,6 @@
 	path = thirdparty/STM32F103X_HAL
 	url = https://github.com/STMicroelectronics/stm32f1xx_hal_driver.git
     ignore = all
-[submodule "thirdparty/linting"]
-	path = thirdparty/linting
-	url = https://github.com/dogusyuksel/embedded_linting.git
-    ignore = all
 [submodule "thirdparty/custom_printf"]
 	path = thirdparty/custom_printf
 	url = https://github.com/mpaland/printf.git

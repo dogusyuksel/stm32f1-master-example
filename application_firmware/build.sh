@@ -3,13 +3,13 @@
 if [ -d "generated_files" ]; then
     sudo rm -rf generated_files
 fi
-/workspace/thirdparty/libcanard/dsdl_compiler/libcanard_dsdlc ./nodes --incdir /workspace/thirdparty/libcanard/dsdl_compiler/pyuavcan/uavcan --outdir ./generated_files
+$THIRDPARTY/libcanard/dsdl_compiler/libcanard_dsdlc ./nodes --incdir $THIRDPARTY/libcanard/dsdl_compiler/pyuavcan/uavcan --outdir ./generated_files
 if [[ $? = 0 ]]; then
     echo "success"
 else
     # then try with my docker
     cd ..
-    /workspace/thirdparty/docker/run_docker.sh golden-sample:latest "cd /workspace && /workspace/thirdparty/libcanard/dsdl_compiler/libcanard_dsdlc ./application_firmware/nodes --incdir /workspace/thirdparty/libcanard/dsdl_compiler/pyuavcan/uavcan --outdir ./application_firmware/generated_files"
+    $THIRDPARTY/docker/run_docker.sh golden-sample:latest "cd $WORKSPACE && $THIRDPARTY/libcanard/dsdl_compiler/libcanard_dsdlc ./application_firmware/nodes --incdir $THIRDPARTY/libcanard/dsdl_compiler/pyuavcan/uavcan --outdir ./application_firmware/generated_files"
     cd -
 fi
 
@@ -17,7 +17,6 @@ rm -rf build
 rm -rf flash.sh
 mkdir build
 cd build
-/workspace/thirdparty/linting/format_check.sh ..
 
 # if there is one arg, then consider it Release build
 if [ "$#" -eq 1 ]; then

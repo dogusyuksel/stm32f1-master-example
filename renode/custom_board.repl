@@ -1,9 +1,0 @@
-using "./stm32f103.repl"
-
-greenled: Miscellaneous.LED @ gpioPortB
-
-gpioPortB:
-    14 -> greenled@0
-
-UserButton: Miscellaneous.Button @ gpioPortA
-    -> gpioPortA@7
