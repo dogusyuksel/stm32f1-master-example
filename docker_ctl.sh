@@ -10,8 +10,7 @@ if [ "$#" -eq 1 ]; then
     fi
 fi
 
-PWD=`pwd`
-BASENAME=`basename "$PWD"`
+BASENAME="dyshell"
 preferred_name=$BASENAME":latest"
 
 # Default values:
