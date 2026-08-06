@@ -1,3 +1,8 @@
+
+# PLEASE PROCEED TO THIS REPO FOR MORE DETAILED EXAMPLES: https://github.com/dogusyuksel/stm32l451-master
+
+
+
 # stm32f1-master-example
 
 This project contains all peripherals' usage samples in it!
